@@ -12,29 +12,6 @@ function Missile(x, y, z, force, target, lifespan, owner)
 	self.lifespan = lifespan or 3000;
 	self.owner = owner;
 
-	self.lastSync = getTickCount();
-	self.syncRate = 100;
-	--[[function self.syncUpdater()
-		if (localPlayer == self.owner and getTickCount() > self.lastSync + self.syncRate) then
-			self.lastSync = getTickCount();
-			self.owner:setData("rocket" .. self.index, {
-				pos = {self.pos.x, self.pos.y, self.pos.z},
-				vel = {self.vel.x, self.vel.y, self.vel.z}
-			});
-		end
-	end
-
-	function self.sync()
-		if (localPlayer ~= self.owner and getTickCount() > self.lastSync + self.syncRate) then
-			self.lastSync = getTickCount();
-			local data = self.owner:getData("rocket" .. self.index);
-			if (data) then
-				self.pos = Vector3(data.pos.x, data.pos.y, data.pos.z);
-				self.vel = Vector3(data.vel.x, data.vel.y, data.vel.z);
-			end
-		end
-	end]]
-
 	function self.expired(ls)
 		return getTickCount() > life + (ls or self.lifespan);
 	end
